@@ -72,5 +72,6 @@ export default {
 .workflow-container {
   background-color: azure;
   height: 100%;
+  width: 99%;
 }
 </style>
