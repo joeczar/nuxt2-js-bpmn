@@ -32,6 +32,14 @@
 
       <div id="js-canvas" ref="canvas" class="canvas"></div>
     </div>
+    <div class="download-controls">
+      <button class="download-btn diagram-btn" @click="downloadDiagram">
+        <span class="icon">
+          <i class="mdi mdi-download"></i>
+        </span>
+        <span class="text">Download Diagram</span>
+      </button>
+    </div>
   </div>
 </template>
 
@@ -88,6 +96,19 @@ export default {
         this.errorMessage = error.message
       }
     },
+    downloadDiagram() {
+      this.modeller.saveXML({ format: true }, (err, xml) => {
+        if (err) {
+          console.error(err)
+        } else {
+          const link = document.createElement('a')
+          link.href =
+            'data:application/bpmn+xml;charset=UTF-8,' + encodeURIComponent(xml)
+          link.download = 'diagram.bpmn'
+          link.click()
+        }
+      })
+    },
   },
 }
 </script>
@@ -106,6 +127,20 @@ export default {
 
     .canvas {
       height: 100%;
+    }
+  }
+
+  .download-controls {
+    display: flex;
+    justify-content: center;
+    padding: 0.5rem;
+
+    .download-btn {
+      cursor: pointer;
+      padding: 1rem;
+      border-radius: 0.25rem;
+      border: 2px solid #ccc;
+      margin: auto 1rem;
     }
   }
 }
