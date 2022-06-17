@@ -7,7 +7,7 @@ import BpmnModeler from 'bpmn-js/lib/Modeler'
 // import BpmnModeller from '~/components/BpmnModeller.vue';
 export default {
   name: 'BpmnModeller',
-  layout: 'BpmnLayout',
+  // layout: 'BpmnLayout',
   data() {
     return {
       modeller: null,

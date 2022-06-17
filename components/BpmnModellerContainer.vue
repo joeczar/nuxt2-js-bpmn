@@ -46,6 +46,7 @@
 import BpmnModeler from 'bpmn-js/lib/Modeler'
 import newDiagram from '../assets/newDiagram.bpmn'
 import customRendererModule from '@/bpmn/renderers'
+import customControlsModule from '@/bpmn/controls'
 
 export default {
   data: () => ({
@@ -69,7 +70,7 @@ export default {
     this.canvas = this.$refs.canvas
     this.modeller = new BpmnModeler({
       container: this.canvas,
-      additionalModules: [customRendererModule],
+      additionalModules: [customRendererModule, customControlsModule],
     })
 
     this.modeller.attachTo(this.canvas)
