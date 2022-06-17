@@ -1,9 +1,15 @@
 <template>
-  <div>
-    <h1>{{ page.title }}</h1>
-    <p>{{ page.description }}</p>
-    <nuxt-content :document="page" />
-  </div>
+  <v-card class="mx-auto" max-width="800" elevation="2">
+    <v-card-title>
+      {{ page.title }}
+    </v-card-title>
+    <v-card-subtitle>
+      {{ page.description }}
+    </v-card-subtitle>
+    <v-card-text>
+      <nuxt-content :document="page" />
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>

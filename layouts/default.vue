@@ -32,7 +32,7 @@
       <v-spacer />
     </v-app-bar>
     <v-main>
-      <v-container fluid fill-height>
+      <v-container fill-height class="align-content-start">
         <Nuxt />
       </v-container>
     </v-main>
@@ -53,9 +53,14 @@ export default {
       fixed: false,
       items: [
         {
-          icon: 'mdi-apps',
+          icon: 'mdi-home',
           title: 'Home',
           to: '/',
+        },
+        {
+          icon: 'mdi-newspaper',
+          title: 'Notes',
+          to: '/notes',
         },
         {
           icon: 'mdi-sitemap',
