@@ -5,7 +5,7 @@ description: Learnings from BPMN test
 
 ## JavaScript < Typescript
 
-This has been my first JavaScript project in years so it was interestin gto see how much I lean on typescript, and how much it helps in developing. The BPMN library is a very modern JS library which is great, but updating it to typescript would greatly improve it's useability. In it's current form I'd have to change the default tsconfig of a new Angular project and it would take even more work to get it to work in a Nuxt3 project. Which is why I chose Nuxt 2 as teh framework to work with.
+This has been my first JavaScript project in years so it was interesting to see how much I lean on typescript, and how much it helps in developing. The BPMN library is a very modern JS library which is great, but updating it to typescript would greatly improve it's useability. In it's current form I'd have to change the default tsconfig of a new Angular project and it would take even more work to get it to work in a Nuxt3 project. Which is why I chose Nuxt 2 as teh framework to work with.
 
 ## Great Documentation
 
