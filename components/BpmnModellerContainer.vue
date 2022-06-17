@@ -129,7 +129,7 @@ export default {
     color: black;
 
     .canvas {
-      height: 100%;
+      height: 95%;
     }
   }
 

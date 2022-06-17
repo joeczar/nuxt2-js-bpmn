@@ -12,7 +12,7 @@ Einstiegspunkt zur Bibliothek: <https://bpmn.io/toolkit/bpmn-js/>
 Der hier gezeigte Editor kann unter dem folgenden Link getestet werden: <https://demo.bpmn.io/new>
 
 Ein einfacher Workflow kann wie folgt aussehen. Die erste Aufgabe/der erste Task „Name des Patienten prüfen“ ist ein manueller Task, der durch einen Benutzer ausgeführt werden muss. Der zweite Task „Patient speichern“ ist ein Service-Task, der automatisiert eine Funktion oder Nachricht (Rest, MQTT, RPC) ausführt.
-![example](@/assets/1.png)
+![example]("../assets/1.png")
 
 Hier der Projekt-Link zur JavaScript-Bibliothek mit Beispielen: <https://github.com/bpmn-io/bpmn-js>
 
