@@ -57,14 +57,19 @@ export default {
           to: '/',
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-sitemap',
           title: 'Viewer',
           to: '/view',
         },
         {
-          icon: 'mdi-chart-bubble',
+          icon: 'mdi-vector-polyline-edit',
           title: 'Modeller',
           to: '/modeller',
+        },
+        {
+          icon: 'mdi-github',
+          title: 'Repository',
+          to: 'https://github.com/joeczar/nuxt2-js-bpmn',
         },
       ],
       miniVariant: false,

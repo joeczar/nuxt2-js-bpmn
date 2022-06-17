@@ -8,14 +8,13 @@
     >
       <div class="message intro">
         <div class="note">
-          Drop BPMN diagram from your desktop or
-          <a
+          <button
             id="js-create-diagram"
-            href
+            class="btn"
             @click.prevent="createNewDiagram($event)"
-            >create a new diagram</a
           >
-          to get started.
+            create diagram
+          </button>
         </div>
       </div>
 
@@ -33,7 +32,7 @@
       <div id="js-canvas" ref="canvas" class="canvas"></div>
     </div>
     <div class="download-controls">
-      <button class="download-btn diagram-btn" @click="downloadDiagram">
+      <button class="btn diagram-btn" @click="downloadDiagram">
         <span class="icon">
           <i class="mdi mdi-download"></i>
         </span>
@@ -46,6 +45,7 @@
 <script>
 import BpmnModeler from 'bpmn-js/lib/Modeler'
 import newDiagram from '../assets/newDiagram.bpmn'
+import customRendererModule from '@/bpmn/renderers'
 
 export default {
   data: () => ({
@@ -69,6 +69,7 @@ export default {
     this.canvas = this.$refs.canvas
     this.modeller = new BpmnModeler({
       container: this.canvas,
+      additionalModules: [customRendererModule],
     })
 
     this.modeller.attachTo(this.canvas)
@@ -134,14 +135,14 @@ export default {
     display: flex;
     justify-content: center;
     padding: 0.5rem;
+  }
 
-    .download-btn {
-      cursor: pointer;
-      padding: 1rem;
-      border-radius: 0.25rem;
-      border: 2px solid #ccc;
-      margin: auto 1rem;
-    }
+  .btn {
+    cursor: pointer;
+    padding: 1rem;
+    border-radius: 0.25rem;
+    border: 2px solid #ccc;
+    margin: auto 1rem;
   }
 }
 </style>
