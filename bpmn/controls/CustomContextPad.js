@@ -1,5 +1,19 @@
+const SUITABILITY_SCORE_HIGH = 100
+const SUITABILITY_SCORE_AVERGE = 50
+const SUITABILITY_SCORE_LOW = 25
+const FLASK_IDENTIFIER = 'flask-task'
+
 export default class CustomContextPad {
-  constructor(config, contextPad, create, elementFactory, injector, translate) {
+  constructor(
+    bpmnFactory,
+    config,
+    contextPad,
+    create,
+    elementFactory,
+    injector,
+    translate
+  ) {
+    this.bpmnFactory = bpmnFactory
     this.create = create
     this.elementFactory = elementFactory
     this.translate = translate
@@ -12,32 +26,108 @@ export default class CustomContextPad {
   }
 
   getContextPadEntries(element) {
-    const { autoPlace, create, elementFactory, translate } = this
+    const { autoPlace, bpmnFactory, create, elementFactory, translate } = this
+    function appendFlaskTask(flaskIdentifier) {
+      return function (event, element) {
+        if (autoPlace) {
+          const businessObject = bpmnFactory.create('bpmn:Task')
 
-    function appendServiceTask(event, element) {
-      if (autoPlace) {
-        const shape = elementFactory.createShape({ type: 'bpmn:ServiceTask' })
+          businessObject.suitable = flaskIdentifier
 
-        autoPlace.append(element, shape)
-      } else {
-        appendServiceTaskStart(event, element)
+          const shape = elementFactory.createShape({
+            type: 'bpmn:Task',
+            businessObject,
+          })
+
+          autoPlace.append(element, shape)
+        } else {
+          appendFlaskTaskStart(event, element)
+        }
+      }
+    }
+    function appendFlaskTaskStart(flaskIdentifier) {
+      return function (event) {
+        const businessObject = bpmnFactory.create('bpmn:Task')
+
+        businessObject.suitable = flaskIdentifier
+
+        const shape = elementFactory.createShape({
+          type: 'bpmn:Task',
+          businessObject,
+        })
+
+        create.start(event, shape, element)
+      }
+    }
+    function appendServiceTask(suitabilityScore) {
+      return function (event, element) {
+        if (autoPlace) {
+          const businessObject = bpmnFactory.create('bpmn:Task')
+
+          businessObject.suitable = suitabilityScore
+
+          const shape = elementFactory.createShape({
+            type: 'bpmn:Task',
+            businessObject,
+          })
+
+          autoPlace.append(element, shape)
+        } else {
+          appendServiceTaskStart(event, element)
+        }
       }
     }
 
-    function appendServiceTaskStart(event) {
-      const shape = elementFactory.createShape({ type: 'bpmn:ServiceTask' })
+    function appendServiceTaskStart(suitabilityScore) {
+      return function (event) {
+        const businessObject = bpmnFactory.create('bpmn:Task')
 
-      create.start(event, shape, element)
+        businessObject.suitable = suitabilityScore
+
+        const shape = elementFactory.createShape({
+          type: 'bpmn:Task',
+          businessObject,
+        })
+
+        create.start(event, shape, element)
+      }
     }
 
     return {
-      'append.service-task': {
-        group: 'model',
-        className: 'bpmn-icon-service-task',
-        title: translate('Append ServiceTask'),
+      'append.flask-task': {
+        group: 'activity',
+        className: 'bpmn-icon-task flask',
+        title: translate('Create Task with Flask Icon'),
         action: {
-          click: appendServiceTask,
-          dragstart: appendServiceTaskStart,
+          dragstart: appendFlaskTaskStart(FLASK_IDENTIFIER),
+          click: appendFlaskTask(FLASK_IDENTIFIER),
+        },
+      },
+      'append.low-task': {
+        group: 'model',
+        className: 'bpmn-icon-task red',
+        title: translate('Append Task with low suitability score'),
+        action: {
+          click: appendServiceTask(SUITABILITY_SCORE_LOW),
+          dragstart: appendServiceTaskStart(SUITABILITY_SCORE_LOW),
+        },
+      },
+      'append.average-task': {
+        group: 'model',
+        className: 'bpmn-icon-task yellow',
+        title: translate('Append Task with average suitability score'),
+        action: {
+          click: appendServiceTask(SUITABILITY_SCORE_AVERGE),
+          dragstart: appendServiceTaskStart(SUITABILITY_SCORE_AVERGE),
+        },
+      },
+      'append.high-task': {
+        group: 'model',
+        className: 'bpmn-icon-task green',
+        title: translate('Append Task with high suitability score'),
+        action: {
+          click: appendServiceTask(SUITABILITY_SCORE_HIGH),
+          dragstart: appendServiceTaskStart(SUITABILITY_SCORE_HIGH),
         },
       },
     }
@@ -45,6 +135,7 @@ export default class CustomContextPad {
 }
 
 CustomContextPad.$inject = [
+  'bpmnFactory',
   'config',
   'contextPad',
   'create',

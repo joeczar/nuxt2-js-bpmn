@@ -12,6 +12,7 @@
           v-for="(item, i) in items"
           :key="i"
           :to="item.to"
+          :href="item.href"
           router
           exact
         >
@@ -69,7 +70,7 @@ export default {
         {
           icon: 'mdi-github',
           title: 'Repository',
-          to: 'https://github.com/joeczar/nuxt2-js-bpmn',
+          href: 'https://github.com/joeczar/nuxt2-js-bpmn',
         },
       ],
       miniVariant: false,

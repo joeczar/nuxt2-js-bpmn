@@ -8,7 +8,7 @@ import pizzaColab from '../assets/pizza-collaboration.bpmn'
 
 export default {
   name: 'BpmnWorkflow',
-  layout: 'BpmnLayout',
+  // layout: 'BpmnLayout',
   data() {
     return {
       bpmnJS: null,
