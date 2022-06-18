@@ -24,3 +24,7 @@ editing the current shapes with colors and extra features works well. I was able
 ## Custom Events
 
 ToDo
+
+## Custom pallet elements
+
+I was able to create several different types of events that are selectable in the pallet. In order to create a textfield element it would be the same process. You need to create a custom renderer, a custom pallette and a custom context pad which extends the current model. I had hoped you could then add as many of these custom elements as you wanted, so far this does not seem to be the case.

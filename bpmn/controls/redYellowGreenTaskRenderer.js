@@ -70,16 +70,17 @@ export default class CustomRenderer extends BaseRenderer {
       console.log('FLASK_IDENTIFIER', { suitabilityScore })
       try {
         const color = this.getColor(suitabilityScore)
-        const rect = drawRect(parentNode, 50, 50, TASK_BORDER_RADIUS, color)
+        const rect = drawRect(parentNode, 30, 30, TASK_BORDER_RADIUS, color)
         svgAttr(rect, {
-          transform: 'translate(-20, -10)',
+          transform: 'translate(-5, -5)',
         })
         const icon = svgCreate('svg')
         console.log('icon', { icon })
         svgAttr(icon, {
-          transform: 'translate(-15, 5)',
+          // transform: 'translate(-15, 5)',
           fill: 'black',
         })
+
         svgClasses(icon).add('flask-icon')
         icon.innerHTML = flaskIcon
         svgAppend(parentNode, icon)
