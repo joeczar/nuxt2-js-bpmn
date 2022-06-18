@@ -19,7 +19,7 @@ Hier der Projekt-Link zur JavaScript-Bibliothek mit Beispielen: <https://github.
 ## Folgende Themen müssten erarbeitet/umgesetzt werden
 
 1. ☑ Wie sieht eine Einbindung der Bibliothek mit einen Technologie-Stack /Framework Deiner Wahl aus? Funktionsfähiges Demoprogramm zur Erstellung und Speicherung eines BPMN-Modells.
-2. Wie kann man eigene Shapes definieren (die beiden Tasks oben sind Shapes, aber auch der Start- und Endknoten)? Beispielsweise benötigen wir einen Shape Event mit einem Erlenmeyerkolben als Symbol. [bpmn-js-example-custom-rendering](https://github.com/bpmn-io/bpmn-js-example-custom-rendering)
+2. ☑ Wie kann man eigene Shapes definieren (die beiden Tasks oben sind Shapes, aber auch der Start- und Endknoten)? Beispielsweise benötigen wir einen Shape Event mit einem Erlenmeyerkolben als Symbol. [bpmn-js-example-custom-rendering](https://github.com/bpmn-io/bpmn-js-example-custom-rendering)
 3. Wie kann man einen eigenen Eventhandler für die Shapes definieren? Ein Event könnte eine Alert-Box oder ein modales Fenster sein.
 
    - Beispiel-E-Mail-Event (Signal)

@@ -19,10 +19,8 @@ This was all very straight forward thanks to the great documentation and example
 
 editing the current shapes with colors and extra features works well. I was able to implement a few of the examples which you can see in the Modeler.
 
+- Was able to get the Flask to show on the blue event. There are a few different ways this could be done according to the docs.
+
 ## Custom Events
 
 ToDo
-
-## Current Block
-
-I'm currently stuck adding the Flask Icon to a custom Event. I've tried overriding the css and adding the icon to the before element in the Toolbar as well as prepending the svg. So far I can't get either approach to work.
