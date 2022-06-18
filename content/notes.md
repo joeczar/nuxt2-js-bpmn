@@ -28,3 +28,9 @@ ToDo
 ## Custom pallet elements
 
 I was able to create several different types of events that are selectable in the pallet. In order to create a textfield element it would be the same process. You need to create a custom renderer, a custom pallette and a custom context pad which extends the current model. I had hoped you could then add as many of these custom elements as you wanted, so far this does not seem to be the case.
+
+I would next look into extending the elementFactory to create new shapes and tasks.
+
+## Takeaways
+
+I would strongly recommend starting out by Typescript the library. This should be done as an open-source project ideally in cooperation with the library Author. This would be beneficial for everyone by increasing the useability of the library for everyone, and you would gain deep knowledge of it to use in your projects.

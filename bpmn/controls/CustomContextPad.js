@@ -97,7 +97,7 @@ export default class CustomContextPad {
 
     return {
       'append.flask-task': {
-        group: 'activity',
+        group: 'model',
         className: 'bpmn-icon-task flask blue',
         title: translate('Create Task with Flask Icon'),
         action: {
