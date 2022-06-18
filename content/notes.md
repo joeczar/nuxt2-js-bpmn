@@ -33,6 +33,9 @@ I would next look into extending the elementFactory to create new shapes and tas
 
 ## Takeaways
 
-I would strongly recommend starting out by Typescript the library. This should be done as an open-source project ideally in cooperation with the library Author. This would be beneficial for everyone by increasing the useability of the library for everyone, and you would gain deep knowledge of it to use in your projects.
+I would strongly recommend starting out by Typescripting the library. This should be done as an open-source project ideally in cooperation with the library Author. This would be beneficial for everyone by increasing the useability of the library for everyone, and you would gain deep knowledge of it to use in your projects.
 
 [Current stand on TS for BPMN-JS](https://github.com/bpmn-io/bpmn-js/issues/1002)
+[External typings for BPMN-JS](https://github.com/lppedd/bpmnio-typings)
+
+After reading through the issues connected with typescript, it may now be possible with a little work to use it as is. However, out of the box it doesn't work in Angular or Nuxt3.
