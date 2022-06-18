@@ -27,12 +27,12 @@ export default class CustomContextPad {
 
   getContextPadEntries(element) {
     const { autoPlace, bpmnFactory, create, elementFactory, translate } = this
-    function appendFlaskTask(flaskIdentifier) {
+    function appendFlaskTask(suitabilityScore) {
       return function (event, element) {
         if (autoPlace) {
           const businessObject = bpmnFactory.create('bpmn:Task')
 
-          businessObject.suitable = flaskIdentifier
+          businessObject.suitable = suitabilityScore
 
           const shape = elementFactory.createShape({
             type: 'bpmn:Task',
@@ -43,13 +43,15 @@ export default class CustomContextPad {
         } else {
           appendFlaskTaskStart(event, element)
         }
+        console.log('appendFlaskTask', suitabilityScore)
       }
     }
-    function appendFlaskTaskStart(flaskIdentifier) {
+    function appendFlaskTaskStart(suitabilityScore) {
+      console.log('appendFlaskTaskStart', suitabilityScore)
       return function (event) {
         const businessObject = bpmnFactory.create('bpmn:Task')
 
-        businessObject.suitable = flaskIdentifier
+        businessObject.suitable = suitabilityScore
 
         const shape = elementFactory.createShape({
           type: 'bpmn:Task',

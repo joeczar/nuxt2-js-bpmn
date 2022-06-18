@@ -26,7 +26,6 @@ export default class CustomPalette {
           type: 'bpmn:Task',
           businessObject,
         })
-
         create.start(event, shape)
       }
     }

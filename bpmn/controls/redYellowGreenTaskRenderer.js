@@ -18,7 +18,8 @@ const HIGH_PRIORITY = 1500,
   TASK_BORDER_RADIUS = 2,
   COLOR_GREEN = '#52B415',
   COLOR_YELLOW = '#ffc800',
-  COLOR_RED = '#cc0000'
+  COLOR_RED = '#cc0000',
+  COLOR_BLUE = '#2196F3'
 
 const FLASK_IDENTIFIER = 'flask-task'
 
@@ -40,8 +41,11 @@ export default class CustomRenderer extends BaseRenderer {
     const shape = this.bpmnRenderer.drawShape(parentNode, element)
 
     const suitabilityScore = this.getSuitabilityScore(element)
-
-    if (!isNil(suitabilityScore)) {
+    console.log('drawShape', {
+      suitabilityScore,
+      notNil: !isNil(suitabilityScore),
+    })
+    if (!isNil(suitabilityScore) && typeof suitabilityScore === 'number') {
       const color = this.getColor(suitabilityScore)
 
       const rect = drawRect(parentNode, 50, 20, TASK_BORDER_RADIUS, color)
@@ -62,22 +66,27 @@ export default class CustomRenderer extends BaseRenderer {
       svgAppend(text, document.createTextNode(suitabilityScore))
 
       svgAppend(parentNode, text)
-    }
-    if (suitabilityScore === FLASK_IDENTIFIER) {
-      console.log('FLASK_IDENTIFIER')
-      const color = '#2196F3'
-      const rect = drawRect(parentNode, 50, 50, TASK_BORDER_RADIUS, color)
-      svgAttr(rect, {
-        transform: 'translate(-20, -10)',
-      })
-      const icon = svgCreate('image')
-      svgAttr(icon, {
-        transform: 'translate(-15, 5)',
-      })
-      svgClasses(icon).add('flask-icon')
-      svgAppend(icon, flaskIcon)
-      svgAppend(parentNode, icon)
-      console.log('FLASK_IDENTIFIER', { rect, icon })
+    } else if (typeof suitabilityScore === 'string') {
+      console.log('FLASK_IDENTIFIER', { suitabilityScore })
+      try {
+        const color = this.getColor(suitabilityScore)
+        const rect = drawRect(parentNode, 50, 50, TASK_BORDER_RADIUS, color)
+        svgAttr(rect, {
+          transform: 'translate(-20, -10)',
+        })
+        const icon = svgCreate('svg')
+        console.log('icon', { icon })
+        svgAttr(icon, {
+          transform: 'translate(-15, 5)',
+          fill: 'black',
+        })
+        svgClasses(icon).add('flask-icon')
+        icon.innerHTML = flaskIcon
+        svgAppend(parentNode, icon)
+        console.log('FLASK_IDENTIFIER', { rect, icon })
+      } catch (error) {
+        console.error('FLASK_IDENTIFIER', { error })
+      }
     }
 
     return shape
@@ -95,11 +104,16 @@ export default class CustomRenderer extends BaseRenderer {
     const businessObject = getBusinessObject(element)
 
     const { suitable } = businessObject
-
+    if (suitable === FLASK_IDENTIFIER) {
+      return suitable
+    }
     return Number.isFinite(suitable) ? suitable : null
   }
 
   getColor(suitabilityScore) {
+    if (suitabilityScore === FLASK_IDENTIFIER) {
+      return COLOR_BLUE
+    }
     if (suitabilityScore > 75) {
       return COLOR_GREEN
     } else if (suitabilityScore > 25) {
